@@ -99,11 +99,111 @@ $$p(D \leq x) \frac{\sqrt {2\pi}}{x} \sum _{k=1}^{\infty }e^{-(2k-1)^{2}\pi ^{2}
 	# generate test statistic
 	D <- max(abs(empiricalCDF - pnorm(data))) \end{lstlisting}
 
+
+	\vspace{.25cm}
+	
+	\newpage
+	
+\section*{Answer 1} 
+\vspace{.25cm}
+
+\begin{lstlisting}[language=R]
+
+	# Create function to calculate P value
+	
+	calculate_p_value <- function(data) {
+		# Create empirical distribution
+		ECDF <- ecdf(data)
+		empiricalCDF <- ECDF(data)
+		
+		# Calculate the theoretical CDF assuming a standard normal distribution
+		theoreticalCDF <- pnorm(data)
+		
+		# Calculate the test statistic D
+		D <- max(abs(empiricalCDF - theoreticalCDF))
+		
+		# Initialize p-value
+		p_value <- 0
+		
+		# Loop to calculate the sum in the formula
+		for (k in 1:1000) {  
+			p_value <- p_value + sqrt(2 * pi) / D * exp(-(((2 * k) - 1)^2) * pi^2 / (8 * D^2))
+		}
+		
+		return(p_value)
+	}
+	
+	set.seed(123)
+	data <- rcauchy(1000)
+	
+	p_value <- calculate_p_value(data)
+	p_value = 5.652523e-29
+	
+	
+	# Perform Kolmogorov-Smirnov test
+	ks_result <- ks.test(data, "pnorm")
+	
+	# Print the result
+	print(ks_result)
+	
+		Asymptotic one-sample Kolmogorov-Smirnov test
+	
+	data:  data
+	D = 0.13573, p-value = 2.22e-16
+	alternative hypothesis: two-sided
+	
+	
+	 \end{lstlisting}
+
 \vspace{3in}
+
+\newpage
 
 \section*{Question 2}
 \noindent Estimate an OLS regression in \texttt{R} that uses the Newton-Raphson algorithm (specifically \texttt{BFGS}, which is a quasi-Newton method), and show that you get the equivalent results to using \texttt{lm}. Use the code below to create your data.
 \vspace{.5cm}
 \lstinputlisting[language=R, firstline=51,lastline=53]{PS1.R} 
+
+	\vspace{.25cm}
+\section*{Answer 2} 
+\vspace{.25cm}
+
+\begin{lstlisting}[language=R]
+	set.seed(123)
+	data <- data.frame(x = runif(200,1,10))
+	data$y <- 0 + 2.75*data$x + rnorm(200, 0, 1.5)
+	
+	# Run with LM 
+	
+	model <- lm(y ~ x, data = data)
+	summary(model)
+	
+	Coefficients:
+				       Estimate   Std. Error t value Pr(>|t|)    
+	(Intercept)  0.13919    0.25276   0.551    0.582    
+	x            2.72670    0.04159  65.564   <2e-16 ***
+	---
+	
+	Residual standard error: 1.447 on 198 degrees of freedom
+	Multiple R-squared:  0.956,	Adjusted R-squared:  0.9557 
+	
+	# Estimate an OLS in R using Newton-Raphson (BFGS)
+	
+	nr_function <- function(beta, x, y) {
+		y_hat <- beta[1] + beta[2] * x
+		sum((y - y_hat)^2)
+	}
+	
+	initial_guess <- c(0, 1) # Initial guess for intercept and slope
+	result <- optim(par = initial_guess, fn = nr_function, x = data$x, y = data$y, method = "BFGS")
+	
+	# Extract the coefficients
+	coefficients <- result$par
+	print(coefficients)
+	
+	# Result is the same as the LM result
+	[1] 0.139187 2.726699
+	
+	\end{lstlisting}
 
 \end{document}
