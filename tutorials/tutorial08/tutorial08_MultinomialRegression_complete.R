@@ -6,6 +6,8 @@ library(MASS)
 library(nnet)
 library(ggplot2)
 
+workingMoms <- read.table("http://statmath.wu.ac.at/courses/StatsWithR/WorkingMoms.txt", header=T)
+
 # EDA
 summary(workingMoms)
 ftable(xtabs(~ gender + year + attitude, data = workingMoms))
@@ -33,6 +35,7 @@ ggplot(workingMoms, aes(attitude, prestige)) +
   scale_x_discrete(labels=function(x){sub("\\s", "\n", x)}) +
   theme(axis.text.x = element_text(angle = 45)) +
   facet_grid(gender ~ year)
+
 
 # a) Perform an ordered (proportional odds) logistic regression
 
