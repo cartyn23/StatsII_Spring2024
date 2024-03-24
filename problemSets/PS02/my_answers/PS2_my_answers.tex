@@ -285,22 +285,7 @@ P(\text{Support}) \approx \frac{1.0655}{2.0655} \approx 0.516
 
 \begin{lstlisting}[language=R]
 	
-glm(formula = choice ~ sanctions * countries, family = binomial(link = "logit"), 
-data = data)
-
-Coefficients 														Estimate Std. Error z value Pr(>|z|)    
-(Intercept)                            -0.27469    0.07534  -3.646 0.000267***
-sanctions_5_percent                     0.12179    0.10518   1.158 0.246909    
-sanctions_15_percent                   -0.09687    0.10822  -0.895 0.370723    
-sanctions_20_percent                   -0.25260    0.10806  -2.338 0.019412 *  
-countries_80_192                        0.37562    0.10627   3.535 0.000408***
-countries_160_192                       0.61266    0.10801   5.672 1.41e-08***
-sanctions_5_percent:countries_80_192    0.09471    0.15232   0.622 0.534071    
-sanctions_15_percent:countries_80_192  -0.05229    0.15167  -0.345 0.730262    
-sanctions_20_percent:countries_80_192  -0.19721    0.15104  -1.306 0.191675    
-sanctions_5_percent:countries_160_192   0.13009    0.15103   0.861 0.389063    
-sanctions_15_percent:countries_160_192 -0.05165    0.15267  -0.338 0.735136    
-sanctions_20_percent:countries_160_192  0.05688    0.15367   0.370 0.711279 
+FILL
 
 \end{lstlisting}
 

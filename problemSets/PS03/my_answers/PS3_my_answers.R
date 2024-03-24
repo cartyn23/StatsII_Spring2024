@@ -43,23 +43,23 @@ gdp_data <- read.csv("https://raw.githubusercontent.com/ASDS-TCD/StatsII_Spring2
 
 summary(gdp_data)
 
-# do some wrangling
+# UNORDERED ANALYSIS
 
 gdp_data$GDPWdiff_New <- factor(ifelse(gdp_data$GDPWdiff > 0, "positive", ifelse(gdp_data$GDPWdiff < 0, "negative", "no change")),
                                 levels = c("positive", "no change", "negative"),
                                 labels = c("positive", "no change", "negative"))
 
 gdp_data$REG <- factor(gdp_data$REG, levels = c(1, 0),
-                                labels = c("Democracy", "Non-Democracy"))
+                       labels = c("Democracy", "Non-Democracy"))
 
 
 gdp_data$OIL <- factor(gdp_data$OIL, levels = c(1, 0), labels = c("Exceed 50%", "Otherwise"))
 
 # Fit the multinomial logistic regression model on the  data
 
-gdp_data$GDPWdiff_New <- relevel(gdp_data$GDPWdiff_New, ref = "no change")
 gdp_data$REG <- relevel(gdp_data$REG, ref = "Non-Democracy")
 gdp_data$OIL <- relevel(gdp_data$OIL, ref = "Otherwise")
+gdp_data$GDPWdiff_New <- relevel(gdp_data$GDPWdiff_New , ref = "no change")
 
 multinom_model1 <- multinom(GDPWdiff_New ~ REG + OIL + COUNTRY, data = gdp_data)
 summary(multinom_model1)
@@ -73,22 +73,13 @@ z <- summary(multinom_model1)$coefficients/summary(multinom_model1)$standard.err
 
 # we can use predicted probabilities to help our interpretation
 pp <- data.frame(fitted(multinom_model1))
-head(data.frame(GDP_Change = gdp_data$GDPWdiff_New,
-                N = pp$Negative,
-                NC = pp$NoChange,
-                P = pp$Positive,
-                ))
+head(data.frame(GDP_Change = gdp_data$GDPWdiff_New))
 
-pp_df <- data.frame(GDP_Change = gdp_data$GDPWdiff_New,
-                    N = pp[, "negative"],
-                    NC = pp[, "no change"],
-                    P = pp[, "positive"])
 
 #Construct and interpret an ordered multinomial logit with GDPWdiff as the outcome
 # variable, including the estimated cutoff points and coefficients.
 
-
-# ORDERED
+# ORDERED - PROPORTIONAL ODDS
 
 ordered_model <- polr(GDPWdiff_New ~ REG + OIL + COUNTRY, data = gdp_data, Hess=TRUE)
 
