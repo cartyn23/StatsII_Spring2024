@@ -228,13 +228,13 @@ AIC: 4616.003
 	
 	\end{lstlisting}
 
-	The results are as follows:
+	The results are as follows, with test score and p-values included:
 	
 	\begin{lstlisting}[language=R]
 	
 	
 	Coefficients:
-	Estimate Std. Error z value Pr(>|z|)    
+												Estimate Std. Error z value Pr(>|z|)    
 	(Intercept)          -3.81023    0.22209 -17.156   <2e-16 ***
 	competitive.district -0.08135    0.17069  -0.477   0.6336    
 	marginality.06       -2.08014    0.11734 -17.728   <2e-16 ***
@@ -258,7 +258,9 @@ AIC: 4616.003
 	-0.31157887 
 	
 	\end{lstlisting}
-		
+	
+	Is there evidence that PAN presidential candidates visit swing districts more? No, the p-value  (0.0617) for PAN governor is not statistically significant at the 0.05 level, and in any case the value for the variable is negative.
+	
 	\item [(b)]
 	Interpret the \texttt{marginality.06} and \texttt{PAN.governor.06} coefficients.
 	
