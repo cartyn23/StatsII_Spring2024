@@ -103,6 +103,8 @@
 	
 	\begin{lstlisting}[language=R]
 		
+		# Reorganise factors
+		
 		gdp_data$GDPWdiff_New <- factor(ifelse(gdp_data$GDPWdiff > 0, "positive", ifelse(gdp_data$GDPWdiff < 0, "negative", "no change")),
 		levels = c("positive", "no change", "negative"),
 		labels = c("positive", "no change", "negative"))
@@ -133,14 +135,14 @@ The results are as follows:
 			multinom(formula = GDPWdiff_New ~ REG + OIL + COUNTRY, data = gdp_data)
 			
 			Coefficients:
-			(Intercept) REGDemocracy OILExceed 50%    COUNTRY
-			positive    3.015581    0.3550310      8.339428 0.03550780
-			negative    2.900080    0.3539634      8.384195 0.02447895
+								(Intercept) REGDemocracy OILExceed 50% 	COUNTRY
+			positive    3.015581    0.3550310      8.339428 	0.03550780
+			negative    2.900080    0.3539634      8.384195 	0.02447895
 			
 			Std. Errors:
-			(Intercept) REGDemocracy OILExceed 50%    COUNTRY
-			positive   0.4045963    0.8686107    0.05903403 0.01064706
-			negative   0.4056846    0.8702220    0.05903378 0.01066312
+								(Intercept) REGDemocracy OILExceed 50%  COUNTRY
+			positive   0.4045963    0.8686107    0.05903403 	0.01064706
+			negative   0.4056846    0.8702220    0.05903378 	0.01066312
 			
 			Residual Deviance: 4568.055 
 			AIC: 4584.055 
@@ -150,7 +152,19 @@ The results are as follows:
 			negative    18.17560     1.424703      4377.332 1.024781
 			
 		\end{lstlisting}
+\vspace{.5cm}
 		
+\textbf{	Interpretation of coefficients:}
+	
+\textbf{	Intercept:} This is the log odds of no change in GDP, when all predictors are zero. The intercept changes for the shift from no change to positive exp(3) and no change to negative exp(2.9). 
+	
+\textbf{	REGDemocracy}: This is the log odds of GDP change going from no change to positive or no change to negative for a Democracy (1) or a non-Democracy (0). 
+	
+	\textbf{OILExceed 50 per cent:} This is the log odds of GDP change going from no change to positive or no change to negative for a country with fuel exports exceeding 50 per cent (1) or without (0).
+	
+\textbf{	Country:} log odds representing affects of the country variable.
+
+\vspace{1.7cm}
 	
 	\item Construct and interpret an ordered multinomial logit with \texttt{GDPWdiff} as the outcome variable, including the estimated cutoff points and coefficients.
 	
@@ -170,13 +184,13 @@ The results are as follows:
 		\begin{lstlisting}[language=R]
 		
 Coefficients:
-Value Std. Error  t value
+							Value 		Std. Error  t value
 REGDemocracy   0.004128   0.085548  0.04825
 OILExceed 50%  0.077470   0.117196  0.66103
 COUNTRY       -0.010252   0.001123 -9.13108
 
 Intercepts:
-Value    Std. Error t value 
+										Value    Std. Error t value 
 no change|positive  -6.2318   0.2640   -23.6012
 positive|negative    0.1769   0.0770     2.2972
 
@@ -184,10 +198,12 @@ Residual Deviance: 4606.003
 AIC: 4616.003 
 		
 	\end{lstlisting}
-	
+
+\textbf{Interpretation}: Both being a democracy and having over 50 per cent oil exports, appear to have a moderate positive affect on GDP change.
 
 \end{enumerate}
 
+\vspace{1.5cm}
 \section*{Question 2} 
 \vspace{.25cm}
 

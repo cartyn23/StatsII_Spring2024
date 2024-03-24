@@ -14,7 +14,7 @@ detachAllPackages <- function() {
   if (length(package.list)>0)  for (package in package.list) detach(package,  character.only=TRUE)
 }
 detachAllPackages()
-
+        
 # load libraries
 pkgTest <- function(pkg){
   new.pkg <- pkg[!(pkg %in% installed.packages()[,  "Package"])]
