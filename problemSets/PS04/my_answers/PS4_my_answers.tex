@@ -209,12 +209,12 @@ text.col = c("red", "blue"))
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=1\linewidth]{Rplot03}
-	\caption{Comparison of male and females using an average age for mothers}
+	\caption{Comparison of survival rate for male and female children using an average age for mothers}
 	\label{fig:rplot01}
 \end{figure}
 
 \newpage
-\noindent The following graph provides a visualisation of the difference in life expectancy for males and female at 20 and 40.
+\noindent The following graph provides a visualisation of the difference in life expectancy for male and female children when the mother's age is at 20 and 40.
 
 \begin{lstlisting}[language=R]
 newdat20 <- with(child, expand.grid(m.age = c(20, 40), sex = c("male", "female")))
@@ -239,7 +239,7 @@ cex = 0.6)
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=1\linewidth, height=0.3\textheight]{Rplot04}
-	\caption{Difference in life expectancy for males and female at 20 and 40}
+	\caption{Difference in life expectancy for children (male or female) when mother's age is at 20 or 40}
 	\label{fig:rplot04}
 \end{figure}
 
