@@ -103,32 +103,6 @@ stargazer(cox, type = "text")
 \noindent Results are as follows:
 
 \begin{lstlisting}[language=R]
-Call:
-coxph(formula = child_surv ~ sex + m.age, data = child)
-
-n= 26574, number of events= 5616 
-
-				coef exp(coef)  se(coef)      z Pr(>|z|)    
-sexfemale -0.082215  0.921074  0.026743 -3.074 0.002110 ** 
-m.age      0.007617  1.007646  0.002128  3.580 0.000344 ***
----
-
-			exp(coef) exp(-coef) lower .95 upper .95
-sexfemale    0.9211     1.0857     0.874    0.9706
-m.age        1.0076     0.9924     1.003    1.0119
-
-Concordance= 0.519  (se = 0.004 )
-Likelihood ratio test= 22.52  on 2 df,   p=1e-05
-Wald test            = 22.52  on 2 df,   p=1e-05
-Score (logrank) test = 22.53  on 2 df,   p=1e-05
-
-
-
-\end{lstlisting}
-
-\noindent And presented again ...
-
-\begin{lstlisting}[language=R]
 > stargazer(cox, type = "text")
 
 ================================================
@@ -155,38 +129,57 @@ Note:                *p<0.1; **p<0.05; ***p<0.01
 	
 \end{lstlisting}
 
-\noindent \textbf{Interpretation}There is a 0.082 decrease in the expected log of the hazard for female babies compared to 
+\begin{lstlisting}[language=R]
+	
+	> exp(-0.082)
+	[1] 0.921272
+	> exp(0.008)
+	[1] 1.008032
+	
+\end{lstlisting}
+
+\vspace{2.25cm}
+
+\noindent \textbf{Interpretation}: There is a 0.082 decrease in the expected log of the hazard for female babies compared to 
 male, holding mother's age constant. There is a 0.008 increase in the expected log of the hazard for babies of mothers as they age by a year, holding sex constant.\\
 
 \noindent By exponentiating the parameter estimates to obtain hazard ratios, we find that the hazard ratio of female babies is 0.92 that of male babies, i.e. female babies are less
 likely to die (92 female babies die for every 100 male babies; female deaths are 8 per cent lower, etc.)
 
-\begin{lstlisting}[language=R]
 
-> exp(-0.082)
-[1] 0.921272
-> exp(0.008)
-[1] 1.008032
+\newpage
 
-\end{lstlisting}
-	
-\noindent Presenting the results ...
+\noindent Presenting the results:
 
 \begin{lstlisting}[language=R]
 cox_fit <- survfit(cox)
 autoplot(cox_fit)
-	
 \end{lstlisting}
-
-
-
 
 \begin{figure}[htbp]
 	\includegraphics[width=1\linewidth]{Rplot}
+	\caption{Hazard Function Results}
 	\label{fig:rplot}
 \end{figure}
 
-\noindent And with another plot, this time using average age ...
+\vspace{1cm}
+
+\noindent We can also visualise the cumulative hazard function.
+
+\begin{lstlisting}[language=R]
+plot_COXPH <- coxreg(child_surv ~ sex + m.age, data = child)
+plot(plot_COXPH)
+\end{lstlisting}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=1\linewidth]{Rplot05cumulative}
+	\caption{Cumulative Hazard Function}
+	\label{fig:rplot05cumulative}
+\end{figure}
+
+\newpage
+\noindent The following plot provides a visualisation of the difference across genders, using an average age for the mother.
 
 \begin{lstlisting}[language=R]
 
@@ -216,8 +209,38 @@ text.col = c("red", "blue"))
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=1\linewidth]{Rplot03}
+	\caption{Comparison of male and females using an average age for mothers}
 	\label{fig:rplot01}
 \end{figure}
 
+\newpage
+\noindent The following graph provides a visualisation of the difference in life expectancy for males and female at 20 and 40.
+
+\begin{lstlisting}[language=R]
+newdat20 <- with(child, expand.grid(m.age = c(20, 40), sex = c("male", "female")))
+
+plot(survfit(cox, newdata = newdat), 
+xscale = 0.30,
+conf.int = TRUE,
+ylim = c(0.75, 1),
+col = c("red", "blue", "green", "black"), # Specify colors for each age group and sex
+xlab = "Time",
+ylab = "Survival proportion",
+main = "")
+legend("topright",
+legend=c("Male (20)", "Male (40)", "Female (20)", "Female (40)"), 
+lty = 1, 
+col = c("red", "blue", "green", "black"),
+text.col = c("red", "blue", "green", "black"),
+cex = 0.6)
+
+\end{lstlisting}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=1\linewidth, height=0.3\textheight]{Rplot04}
+	\caption{Difference in life expectancy for males and female at 20 and 40}
+	\label{fig:rplot04}
+\end{figure}
 
 \end{document}

@@ -82,6 +82,40 @@ legend("bottomleft",
        col = c("red", "blue"),
        text.col = c("red", "blue"))
 
+# Plotting cumulative hazard function
+plot_COXPH <- coxreg(child_surv ~ sex + m.age, data = child)
+plot(plot_COXPH)
 
-# a further plot2
+# a new plot
+
+newdat20 <- with(child, expand.grid(m.age = c(20, 40), sex = c("male", "female")))
+
+
+plot(survfit(cox, newdata = newdat), xscale = 0.30,
+     conf.int = T,
+     ylim = c(0.75, 1),
+     col = c("red", "blue"),
+     xlab = "Time",
+     ylab = "Survival proportion",
+     main = "")
+legend("bottomleft",
+       legend=c("Male", "Female"),
+       lty = 1, 
+       col = c("red", "blue"),
+       text.col = c("red", "blue"))
+
+plot(survfit(cox, newdata = newdat), 
+     xscale = 0.30,
+     conf.int = TRUE,
+     ylim = c(0.75, 1),
+     col = c("red", "blue", "green", "black"), # Specify colors for each age group and sex
+     xlab = "Time",
+     ylab = "Survival proportion",
+     main = "")
+legend("topright",
+       legend=c("Male (20)", "Male (40)", "Female (20)", "Female (40)"), 
+       lty = 1, 
+       col = c("red", "blue", "green", "black"),
+       text.col = c("red", "blue", "green", "black"),
+       cex = 0.6)
 

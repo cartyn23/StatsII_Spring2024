@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.3.31) (preloaded format=pdflatex 2024.4.11)  11 APR 2024 12:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.3.31) (preloaded format=pdflatex 2024.4.11)  12 APR 2024 13:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -948,32 +948,34 @@ LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
 [1
 
 {C:/Users/carty/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 1
-11.
-
-(C:\Users\carty\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
-File: omscmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 111.
-
-Underfull \hbox (badness 10000) in paragraph at lines 158--160
+Underfull \hbox (badness 10000) in paragraph at lines 143--145
 
  []
 
 [2]
-<Rplot.pdf, id=84, 554.07pt x 230.8625pt>
+<Rplot.pdf, id=71, 554.07pt x 230.8625pt>
 File: Rplot.pdf Graphic file (type pdf)
 <use Rplot.pdf>
-Package pdftex.def Info: Rplot.pdf  used on input line 185.
+Package pdftex.def Info: Rplot.pdf  used on input line 160.
 (pdftex.def)             Requested size: 469.75502pt x 195.7303pt.
- [3 <./Rplot.pdf>]
-<Rplot03.png, id=124, 554.07pt x 305.943pt>
+<Rplot05cumulative.png, id=72, 682.34924pt x 228.855pt>
+File: Rplot05cumulative.png Graphic file (type png)
+<use Rplot05cumulative.png>
+Package pdftex.def Info: Rplot05cumulative.png  used on input line 176.
+(pdftex.def)             Requested size: 469.75502pt x 157.55043pt.
+ [3 <./Rplot.pdf> <./Rplot05cumulative.png>]
+<Rplot03.png, id=94, 554.07pt x 305.943pt>
 File: Rplot03.png Graphic file (type png)
 <use Rplot03.png>
-Package pdftex.def Info: Rplot03.png  used on input line 218.
+Package pdftex.def Info: Rplot03.png  used on input line 211.
 (pdftex.def)             Requested size: 469.75502pt x 259.3852pt.
- [4 <./Rplot03.png>] (PS4_my_answers.aux)
+ [4 <./Rplot03.png>]
+<Rplot04.png, id=124, 682.34924pt x 228.855pt>
+File: Rplot04.png Graphic file (type png)
+<use Rplot04.png>
+Package pdftex.def Info: Rplot04.png  used on input line 241.
+(pdftex.def)             Requested size: 469.74907pt x 186.13628pt.
+ [5 <./Rplot04.png>] (PS4_my_answers.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-03-14>
@@ -982,10 +984,10 @@ Package rerunfilecheck Info: File `PS4_my_answers.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 27323 strings out of 474424
- 479867 string characters out of 5741739
- 2221496 words of memory out of 5000000
- 49096 multiletter control sequences out of 15000+600000
+ 27329 strings out of 474424
+ 480037 string characters out of 5741739
+ 2095496 words of memory out of 5000000
+ 49099 multiletter control sequences out of 15000+600000
  568815 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,6n,93p,3248b,2075s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -998,12 +1000,10 @@ onts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/carty/AppData/Local/Programs/
 MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/carty/AppData/Local/P
 rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/carty/AppData
 /Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/carty/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Use
-rs/carty/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pf
-b>
-Output written on PS4_my_answers.pdf (4 pages, 179414 bytes).
+AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on PS4_my_answers.pdf (5 pages, 185761 bytes).
 PDF statistics:
- 200 PDF objects out of 1000 (max. 8388607)
- 97 named destinations out of 1000 (max. 500000)
- 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 209 PDF objects out of 1000 (max. 8388607)
+ 103 named destinations out of 1000 (max. 500000)
+ 33 words of extra memory for PDF output out of 10000 (max. 10000000)
 
